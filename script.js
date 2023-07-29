@@ -493,7 +493,10 @@ class Player {
 
     isColliding(enemy) {
         const attackBox = this.attackHitbox;
-        if (enemy.dead) return false;
+        if (enemy.dead) {
+            this.dead = false; // To make sure both players don't die at the same time during standOff mode
+            return false;
+        }
         if (this.dead) return false;
         if (enemy.tied) return false;
         if (this.tied) return false;
@@ -889,6 +892,7 @@ async function reset() {
     player1.reset(200, -100, 50, 100, 'blue', player1Animation, one[0], one[1], one[2]);
     player2.reset(1250, -115, 50, 100, 'red', player2Animation, two[0], two[1], two[2]);
     player2.right = false;
+    player2.attackCooldown = 900;
 
     displayTime = 0;
     timerSeconds = roundTime;
@@ -1120,14 +1124,11 @@ normalBtn.onclick = () => {
     armorBtn.classList.remove('active');
     standoffBtn.classList.remove('active');
 
-    // reset basics
+    resetBasics();
+
+    // Reset damage output
     P1_Damage_Output = player1_Damage_Output;
     P2_Damage_Output = player2_Damage_Output;
-    if (gameStart) {
-        player1.health = 100;
-        player2.health = 100;
-        timerSeconds = 90;
-    }
 }
 
 // Decrease damage output or increase health
@@ -1136,34 +1137,47 @@ armorBtn.onclick = () => {
     armorBtn.classList.add('active');
     standoffBtn.classList.remove('active');
 
-    // reset basics
-    if (gameStart) {
-        player1.health = 100;
-        player2.health = 100;
-        timerSeconds = 90;
-    }
+    resetBasics();
 
     // Decrease damage output
     P1_Damage_Output = player1_Damage_Output / 5;
     P2_Damage_Output = player2_Damage_Output / 5;
 }
 
-// Increase damage output or decrease health
+// Increase damage output & decrease attackSpeed
 standoffBtn.onclick = () => {
     normalBtn.classList.remove('active');
     armorBtn.classList.remove('active');
     standoffBtn.classList.add('active');
 
-    // reset basics
-    if (gameStart) {
-        player1.health = 100;
-        player2.health = 100;
-        timerSeconds = 90;
-    }
+    resetBasics();
     
     // Increase damage output
     P1_Damage_Output = player1_Damage_Output + 10;
     P2_Damage_Output = player2_Damage_Output + 10;
+    if (gameStart) {
+        player1.attackCooldown = 3000;
+        player2.attackCooldown = 3000;
+    }
+}
+
+function resetBasics() {
+    if (gameStart) {
+
+        player1.health = 100;
+        player2.health = 100;
+        timerSeconds = 90;
+
+        player1.x = 200;
+        player1.y = -100;
+
+        player2.x = 1250;
+        player2.y = -115;
+        player2.right = false;
+
+        player1.attackCooldown = 1000;
+        player2.attackCooldown = 900;
+    }
 }
 
 
