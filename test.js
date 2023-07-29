@@ -16,7 +16,7 @@
 // ctx.webkitImageSmoothingEnabled = false;
 // ctx.imageSmoothingEnabled = false;
 // //So the animation can play
-// let totalFrames = 8; //Because there are 7 sprites in total. Therefore the animation will take place over 7 frames
+// let totalFrames = 8;
 // let currentFrame = 0;
 // //So the source position can be updated
 // let srcX = 0;
