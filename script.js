@@ -572,7 +572,7 @@ function setup() {
         ctx.fillText('Samurai Fighter', canvas.width / 2, canvas.height / 3);
         ctx.fillStyle = 'yellow';
         ctx.font = '30px Arial';
-        ctx.fillText('Press Enter to Begin your Duel', canvas.width / 2, canvas.height / 2);
+        ctx.fillText('Press Enter to Begin your Duel', canvas.width / 2, canvas.height / 1.5);
         hideLoadingAnimation();
     };
 
