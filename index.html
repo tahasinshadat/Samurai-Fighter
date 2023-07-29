@@ -13,15 +13,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-</head>
-<body class="bg-light">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+</head>
+<body>
+
+    <!-- Game -->
     <canvas id="game"></canvas>
     <div class="MOBILE">
         <h1>This Game is not compatible with mobile devices, 
             please go on a computer to play this game!</h1>
     </div>
 
+    <!-- Top Buttons -->
     <button type="button" 
         class="btn btn-outline-primary m-1"
         data-bs-toggle="modal"
@@ -37,6 +42,7 @@
         >Game Design
     </button>
 
+    <!-- Gamemode Buttons -->
     <div class="text-center GAMEMODES">
 
         <button type="button" class="btn btn-outline-info m-1 btn-tooltip" id="normal">
@@ -56,11 +62,18 @@
 
     </div>
 
+    <!-- Loading Icon -->
     <div id="loading" class="loading-animation">
         <div class="spinner"></div>
     </div>
 
-    <!-- <h1 class="text-center" id="moveUp">Samurai Fighter</h1> -->
+    <!-- Light Mode Dark Mode Button -->
+    <div class="mode-toggle">
+        <button class="btn btn-outline-danger" id="mode-toggle">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
     <!-- Modal 1-->
     <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">

@@ -55,13 +55,42 @@ canvas {
 .GAMEMODES {
     margin: auto;
     display: block;
-    position: absolute;
+    position: fixed;
     top: 94vh;
     bottom: 0;
     left: 0;
     right: 0;
 }
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
   
+/* Styles for the mode toggle button */
+.mode-toggle {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+  
+.mode-toggle button {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: #333; /* Initial color of the button icon */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+  
+/* Change icon color for light mode */
+body.dark-mode .mode-toggle button {
+    color: white;
+}
+
+
 /* Animation for the spinner */
 @keyframes spin {
     0% {
@@ -71,17 +100,20 @@ canvas {
       transform: rotate(360deg);
     }
 }
-  
 
-@media (max-width: 1500px) {
+
+@media (max-width: 1050px) {
     body {
         background-color: lightgray;
     }
     div {
-        display: block;
+        display: none;
     }
     canvas {
         display: none;
+    }
+    button {
+        display: none !important;
     }
     /* #MOBILE-MODAL {
         display: none;
@@ -89,11 +121,14 @@ canvas {
     /* button {
         display: none !important;
     } */
+    .MOBILE {
+        display: block;
+    }
 }
 
 .btn-tooltip {
     position: relative;
-    font-size: 12px; /* Adjust the font size to your preference */
+    font-size: 12px; 
 } 
 
 /* Tooltip text */

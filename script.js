@@ -1180,6 +1180,20 @@ function resetBasics() {
     }
 }
 
+const modeToggleButton = document.getElementById('mode-toggle');
+const body = document.body;
+modeToggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+
+// Mode toggle button click event
+modeToggleButton.addEventListener('click', () => {
+  if (body.classList.contains('dark-mode')) {
+    body.classList.remove('dark-mode');
+    modeToggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+  } else {
+    body.classList.add('dark-mode');
+    modeToggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
