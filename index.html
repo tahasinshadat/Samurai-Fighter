@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samurai Fighter</title>
+
+    <!-- My Files -->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <canvas id="game"></canvas>
+    <div class="MOBILE">
+        <h1>This Game is not compatible with mobile devices, 
+            please go on a computer to play this game!</h1>
+    </div>
+
+    <button type="button" 
+        class="btn btn-outline-primary m-1"
+        data-bs-toggle="modal"
+        data-bs-target="#send"
+        >How To Play
+    </button>
+
+    <button type="button" 
+        class="btn btn-outline-primary m-1 text-end"
+        data-bs-toggle="modal"
+        data-bs-target="#send2"
+        id="gameDesign"
+        >Game Design
+    </button>
+
+    <div class="text-center GAMEMODES">
+
+        <button type="button" class="btn btn-outline-info m-1 btn-tooltip" id="normal">
+            Normal
+            <span class="tooltiptext">The Original and Classic Showdown Between 2 Rivals!</span>
+        </button>
+
+        <button type="button" class="btn btn-outline-info m-1 btn-tooltip" id="armor">
+            Yoroi (Samurai Armor)
+            <span class="tooltiptext" id="armorText">Ronin & Hiroshi came to battle fully equiped! They both recieve significantly less damage!</span>
+        </button>
+
+        <button type="button" class="btn btn-outline-info m-1 btn-tooltip" id="standoff">
+            Iaido (StandOff)
+            <span class="tooltiptext">A Battle of intense focus and timing... or just straight up luck! Both Ronin and Hiroshi are one hit!</span>
+        </button>
+
+    </div>
+
+    <div id="loading" class="loading-animation">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- <h1 class="text-center" id="moveUp">Samurai Fighter</h1> -->
+
+    <!-- Modal 1-->
+    <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sendLabel">How To Play:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="lead" id="instruct"></p>
+
+                    <h3>Controls:</h3>
+                    <h5>Player 1 Controls (Ronin):</h5>
+                    <ul>
+                        <li>W - Jump</li>
+                        <li>A - Move Left</li>
+                        <li>D - Move Right</li>
+                        <li>SPACE - Attack</li>
+                    </ul>
+
+                    <h5>Player 2 Controls (Hiroshi):</h5>
+                    <ul>
+                        <li>UP ARROW - Jump</li>
+                        <li>LEFT ARROW - Move Left</li>
+                        <li>RIGHT ARROW - Move Right</li>
+                        <li>SHIFT - Attack</li>
+                    </ul>
+
+                    <hr>
+                    <h3>Scenario:</h3>
+                    <p>
+                        Ronin and Hiroshi, two legendary samurai, cross blades on the 
+                        moonlit rooftop of Edo. Ronin seeks redemption for a past dishonor, 
+                        while Hiroshi's ambition drives him. The clash of swords reflects 
+                        their conflicting paths, as fate weaves a tale of honor and power, 
+                        destined to be settled under the night sky.
+                    <p>
+                        <ul>
+                            <li>Player 1 (Ronin) has a <strong>higher attack damage</strong> due to <u>focus</u></li>
+                            <li>Player 2 (Hiroshi) has a <strong>higher attack speed</strong> due to <u>ferocity</u></li>
+                        </ul>
+
+                    <hr>
+                    <h3>How to Win:</h3>
+                    <ul>
+                        <li>Best 2 of 3 win system</li>
+                        <li>Attack the other player until dead</li>
+                        <li>Have the most health before round is over</li>
+                    </ul>
+
+                </div>
+                        
+                <div class="modal-footer" id="modalBtns"> 
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>       
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="send2" tabindex="-1" aria-labelledby="sendLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sendLabel2">Game Designs</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="lead" id="instruct2"></p>
+                    
+                    <h5>Attacking & Health Depletion Logic</h5>
+                    <ul>
+                        <li>Player 1 does more damage because his attack animation is longer so he has a slower attack speed</li>
+                        <li>Player 2 does less damage because his attack animation is shorter meaning he has a faster attack speed</li>
+                    </ul>
+
+                    <p>Thus:</p>
+                    <ul>
+                        <li>Player 1 takes <strong>6 FULL ATTACKS</strong> to kill Player 2</li>
+                        <li>Player 2 takes <strong>7 FULL ATTACKS</strong> to kill Player 1</li>
+                    </ul>
+                    
+                    <h5>Semi-Attacks:</h5>
+                    <ul>
+                        <li>Semi-Attacks are when the player or other player moves outside of the attack hit range mid attack</li>
+                        <li>This leads to the attack doing only a certain PERCENTAGE of the full damage</li>
+                    </ul>
+
+                    <p>Example:</p>
+                    <ul>
+                        <li>SCENARIO: Player 1 attacks and Player 2 leaves Player 1's attack range after 75% of the animation</li>
+                        <li>RESULT: Player 2 will recieve 75% of the damage Player 1 can output</li>
+                    </ul>
+
+                    <hr>
+                    <p>
+                        Theres a lot more intential Game Designs that I think are pretty cool! If you're interested in how I made this, 
+                        you can check out my code <a href="https://github.com/tahasinshadat/Samurai-Fighter" target="_blank">here</a>. 
+                        I made sure to leave tons of comments and make it very organized and readable!
+                    </p>
+
+                </div>
+
+                <div class="modal-footer" id="modalBtns2"> 
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>       
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <a href="test.html">test</a> -->
+
+</body>
+</html>
